@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Disallow: /auth/
+Disallow: /onboarding
+Disallow: /profile
+Disallow: /dashboard/
+Disallow: /checkout
+Disallow: /success
+
+Sitemap: https://zoomersky.win/sitemap.xml

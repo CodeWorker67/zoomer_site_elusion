@@ -1,0 +1,33 @@
+{
+  "name": "zoomer-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "seo": "node scripts/generate-seo.mjs",
+    "dev": "node scripts/generate-seo.mjs && vite",
+    "build": "node scripts/generate-seo.mjs && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.15.0",
+    "axios": "^1.11.0",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^6.20.1",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "terser": "^5.43.1",
+    "vite": "^5.4.0"
+  }
+}
