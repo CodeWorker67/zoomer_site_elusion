@@ -16,6 +16,9 @@ import {
   priceFor,
 } from '@utils/pricing';
 
+/** Первая покупка (ещё не было оплаченной подписки): 1 мес. × 1 устройство = 189 ₽ */
+const DEFAULT_PERIOD_ID = '30';
+
 const PERIOD_OPTIONS = SUBSCRIPTION_PERIODS.map((p) => ({ value: p.id, label: p.short }));
 const DEVICE_OPTIONS = Array.from({ length: DEVICES_MAX - DEVICES_MIN + 1 }, (_, i) => {
   const n = DEVICES_MIN + i;
@@ -34,7 +37,7 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
   const [prices, setPrices] = useState(FALLBACK_PRICES);
   const [profile, setProfile] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [periodId, setPeriodId] = useState(SUBSCRIPTION_PERIODS[0].id);
+  const [periodId, setPeriodId] = useState(DEFAULT_PERIOD_ID);
   const [devices, setDevices] = useState(DEVICES_MIN);
 
   useEffect(() => {
@@ -46,7 +49,10 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
       if (cancelled) return;
       if (serverPrices && Object.keys(serverPrices).length > 0) setPrices(serverPrices);
       setProfile(sub);
-      if (sub?.devices_selectable !== false && Number(sub?.devices) >= DEVICES_MIN) {
+      if (!sub?.has_paid_subscription) {
+        setDevices(DEVICES_MIN);
+        setPeriodId(DEFAULT_PERIOD_ID);
+      } else if (sub.devices_selectable !== false && Number(sub.devices) >= DEVICES_MIN) {
         setDevices(clampDevices(sub.devices));
       }
       setLoaded(true);
@@ -64,6 +70,8 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
     [periodId],
   );
   const price = priceFor(prices, effectiveDevices, period.id);
+  const isFirstPurchase = profile?.has_paid_subscription !== true;
+  const primaryActionLabel = isFirstPurchase ? 'Купить' : 'Продлить';
 
   const goCheckout = (tariffId) => {
     const params = new URLSearchParams({
@@ -142,7 +150,7 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
               disabled={price == null}
               onClick={() => goCheckout(period.id)}
             >
-              Продлить{price != null ? ` · ${formatRub(price)}` : ''}
+              {primaryActionLabel}{price != null ? ` · ${formatRub(price)}` : ''}
             </Button>
             <p className="text-center text-xs text-happ-faint mt-3">
               Цена зависит от срока и количества устройств. Добавить устройства можно и позже.

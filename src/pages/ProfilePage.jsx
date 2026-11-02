@@ -154,6 +154,8 @@ function OverviewTab({ onGoTab }) {
   const inPanel = Boolean(sub?.in_panel);
   /** Бесплатный день доступен только до первой активации ключа в панели. */
   const showTrialCta = !inPanel && !isActive && !hasPaid;
+  const devicesNum = isActive ? Number(sub?.devices) : 0;
+  const devicesText = devicesNum >= 1 ? devicesLabel(devicesNum) : '—';
 
   if (loading) return <LoadingBlock />;
 
@@ -206,10 +208,14 @@ function OverviewTab({ onGoTab }) {
           <span className="text-happ-ink font-semibold">{planName}</span>
         </div>
         {isActive && expires ? (
-          <p className="text-sm text-zoomer-neon/90 mb-4">Активна до {expires}</p>
+          <p className="text-sm text-zoomer-neon/90 mb-2">Активна до {expires}</p>
         ) : (
-          <p className="text-sm text-red-400 mb-4">Подписка не активна</p>
+          <p className="text-sm text-red-400 mb-2">Подписка не активна</p>
         )}
+        <p className="text-sm text-happ-muted mb-4">
+          Устройств:{' '}
+          <span className="text-happ-ink font-medium">{devicesText}</span>
+        </p>
         {showTrialCta && (
           <button
             type="button"
