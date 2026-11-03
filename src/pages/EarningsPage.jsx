@@ -19,7 +19,7 @@ import toast from 'react-hot-toast';
 import { partnerApi } from '@services/api';
 import useAuthStore from '@stores/authStore';
 import DashboardLayout from '@components/dashboard/DashboardLayout';
-import { BRAND, BRAND_META, ROUTES, TELEGRAM } from '@utils/constants';
+import { BRAND, BRAND_META, ROUTES, TELEGRAM, TRIAL_OFFER_LABEL } from '@utils/constants';
 import { resolvePartnerSiteLink } from '@utils/site';
 
 function maskEmail(email) {
@@ -47,7 +47,7 @@ function defaultShareMessage(siteLink, telegramLink) {
     `Рекомендую ${BRAND} — быстрый VPN для Happ.\n\n`
     + `🌐 Сайт: ${siteLink}\n`
     + `📱 Telegram: ${telegramLink}\n\n`
-    + '1 день бесплатно после регистрации!'
+    + `${TRIAL_OFFER_LABEL} после регистрации!`
   );
 }
 

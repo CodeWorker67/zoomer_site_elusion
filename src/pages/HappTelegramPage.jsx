@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { RouteMeta } from '@components/seo/PageMeta';
 import FaqSection from '@components/sections/FaqSection';
 import Button from '@components/ui/Button';
-import { BRAND, BRAND_META, ROUTES } from '@utils/constants';
+import { BRAND, BRAND_META, ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 import { buildTelegramBotUrl } from '@utils/botLink';
 
 const STEPS = [
@@ -28,7 +28,7 @@ const FAQ = [
   { q: 'Где скачать приложение Happ?', a: 'Happ скачивается из App Store, Google Play или с GitHub разработчика. Бот его не заменяет — он выдаёт ключ-подписку.' },
   { q: 'Как добавить ключ из Telegram в Happ?', a: 'В мини-приложении нажмите «Добавить в Happ» — ключ импортируется одним нажатием. Можно также скопировать ссылку или отсканировать QR-код.' },
   { q: 'Работает ли этот ключ в других приложениях?', a: 'Да. Ссылка-подписка VLESS подходит для Happ, INCY, v2rayTun, Streisand и других совместимых клиентов.' },
-  { q: 'Сколько стоит подписка и есть ли бесплатный период?', a: 'Пробный день без карты (1 устройство). Дальше — от 189 ₽/мес, сроки 1/3/6 мес и год в личном кабинете.' },
+  { q: 'Сколько стоит подписка и есть ли пробный период?', a: 'На сайте — триал 3 дня за 9 ₽. В боте — платные тарифы; на сайте от 189 ₽/мес (1/3/6 мес и год).' },
 ];
 
 export default function HappTelegramPage() {
@@ -41,7 +41,7 @@ export default function HappTelegramPage() {
           <h1 className="text-3xl md:text-5xl font-bold text-happ-ink mb-6">Happ VPN в Telegram</h1>
           <p className="text-happ-muted text-lg mb-8">
             Telegram-бот открывает мини-приложение, где есть всё то же, что в личном кабинете —
-            ключ, подписка, оплата и устройства. Пробный доступ без карты.
+            ключ, подписка, оплата и устройства. На сайте — {TRIAL_OFFER_LABEL}.
           </p>
           <a href={buildTelegramBotUrl()} target="_blank" rel="noopener noreferrer">
             <Button className="px-10">Открыть Telegram бот</Button>
@@ -94,7 +94,7 @@ export default function HappTelegramPage() {
             {[
               { title: 'Без регистрации на сайте', desc: 'Вход через Telegram-аккаунт в боте.' },
               { title: 'Ничего не теряется', desc: 'Ключ всегда в чате — не нужно искать письмо.' },
-              { title: 'Пробный доступ', desc: 'Без карты — сразу после запуска бота.' },
+              { title: 'Пробный доступ на сайте', desc: TRIAL_OFFER_LABEL },
             ].map((x) => (
               <div key={x.title} className="card-dark">
                 <h3 className="text-happ-ink font-semibold mb-2 text-sm">{x.title}</h3>
@@ -111,7 +111,7 @@ export default function HappTelegramPage() {
         </a>
         <p className="text-happ-muted mt-6 text-sm">
           Предпочитаете сайт?{' '}
-          <Link to={ROUTES.HAPP_FREE} className="text-zoomer-neon hover:underline">Получить бесплатно на сайте</Link>
+          <Link to={ROUTES.HAPP_FREE} className="text-zoomer-neon hover:underline">{TRIAL_OFFER_LABEL} на сайте</Link>
           {' · '}
           <Link to={ROUTES.HAPP} className="text-zoomer-neon hover:underline">Как оплатить подписку</Link>
         </p>

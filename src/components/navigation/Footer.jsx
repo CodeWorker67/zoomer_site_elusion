@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { DOWNLOADS, ROUTES, SUPPORT_URL } from '@utils/constants';
+import { DOWNLOADS, ROUTES, SUPPORT_URL, TRIAL_OFFER_SHORT } from '@utils/constants';
 
 const footerLinks = [
   { path: ROUTES.HAPP, label: 'Подписка' },
-  { path: ROUTES.HAPP_FREE, label: 'Бесплатно' },
+  { path: ROUTES.HAPP_FREE, label: TRIAL_OFFER_SHORT },
   { path: ROUTES.HAPP_VPN, label: 'VPN' },
   { path: ROUTES.HAPP_DOWNLOAD, label: 'Скачать' },
   { path: ROUTES.HAPP_TELEGRAM, label: 'Telegram' },

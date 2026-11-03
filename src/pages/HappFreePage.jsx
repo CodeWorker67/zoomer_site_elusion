@@ -5,17 +5,38 @@ import FaqSection from '@components/sections/FaqSection';
 import CtaBlock from '@components/sections/CtaBlock';
 import ComparisonTable from '@components/sections/ComparisonTable';
 import Button from '@components/ui/Button';
-import { BRAND, BRAND_META, ROUTES } from '@utils/constants';
+import { ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 import { buildTelegramBotUrl } from '@utils/botLink';
 
 const FAQ = [
-  { q: 'Что такое пробная подписка Happ?', a: 'Пробная подписка — бесплатный доступ к VPN для Happ без оплаты и без привязки карты. Ключ выдаётся сразу после регистрации.' },
-  { q: 'Хапп подписка бесплатно — где взять?', a: 'Зарегистрируйтесь на Зумерский VPN по email или Google, либо перейдите в Telegram-бот — ключ появится сразу.' },
-  { q: 'На сколько дней пробная подписка Happ?', a: 'Срок пробного доступа зависит от выбранного тарифа в боте или на сайте. Карта не запрашивается.' },
-  { q: 'Нужна ли карта для пробной подписки?', a: 'Нет. Ни при регистрации, ни при активации карта не запрашивается. Скрытых списаний нет.' },
-  { q: 'Как получить подписку Happ бесплатно через Telegram?', a: 'Откройте Telegram-бот Зумерский VPN, нажмите «Старт» и активируйте пробный доступ — ключ придёт в бота.' },
-  { q: 'Работают ли бесплатные ключи?', a: 'Да, ключи полностью рабочие. Отличие от платной подписки — срок действия и объём доступа.' },
-  { q: 'Что после окончания пробной подписки?', a: 'Можно перейти на платную подписку от 189 ₽/мес (1 устройство). Ключ остаётся прежним — обновлять в Happ не нужно.' },
+  {
+    q: 'Что такое пробная подписка Happ?',
+    a: 'Короткий оплаченный период — 3 дня за 9 ₽. Полный доступ к VPN для Happ, ключ выдаётся после оплаты в личном кабинете.',
+  },
+  {
+    q: 'Где оформить триал Happ?',
+    a: 'Зарегистрируйтесь на Зумерский VPN по email или Google, откройте раздел «Купить» и выберите «Триал 3 дня — 9 ₽».',
+  },
+  {
+    q: 'На сколько дней пробная подписка Happ?',
+    a: '3 дня. Тариф доступен один раз до первой активации ключа в панели.',
+  },
+  {
+    q: 'Как оплатить пробный тариф?',
+    a: 'СБП или карта РФ через Platega. Автосписаний нет — только выбранный период.',
+  },
+  {
+    q: 'Есть ли триал 3 дня за 9 ₽ в Telegram-боте?',
+    a: 'Нет, этот тариф только на сайте Зумерский VPN. В боте — другие тарифы.',
+  },
+  {
+    q: 'Работают ли ключи после триала?',
+    a: 'Да, ключи полностью рабочие. После окончания 3 дней продлите подписку — тот же ключ в Happ.',
+  },
+  {
+    q: 'Что после окончания пробной подписки?',
+    a: 'Выберите тариф от 189 ₽/мес (1 устройство) или длиннее. Ключ остаётся прежним — обновлять в Happ не нужно.',
+  },
 ];
 
 export default function HappFreePage() {
@@ -23,9 +44,9 @@ export default function HappFreePage() {
     <>
       <RouteMeta path={ROUTES.HAPP_FREE} />
       <PageHero
-        title="Пробная подписка Happ — бесплатный старт"
-        subtitle="Оформите пробную подписку Happ за 1 минуту. Полноценный доступ без оплаты — карта не нужна."
-        primaryLabel="Получить бесплатную подписку"
+        title={`Пробная подписка Happ — ${TRIAL_OFFER_LABEL}`}
+        subtitle="Оформите пробную подписку Happ за 1 минуту. Полноценный доступ на 3 дня — оплата через СБП или карту РФ."
+        primaryLabel={TRIAL_OFFER_LABEL}
         secondaryLabel="Через Telegram"
         secondaryTo={ROUTES.HAPP_TELEGRAM}
       />
@@ -34,21 +55,25 @@ export default function HappFreePage() {
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-happ-ink mb-6">Что такое пробная подписка Happ</h2>
           <p className="text-happ-muted leading-relaxed mb-4">
-            Пробная подписка Happ — доступ к VPN-сервису бесплатно, без оплаты и без карты.
-            Тот же VLESS-ключ, те же серверы и та же скорость. Единственная разница — срок.
+            Пробная подписка Happ — короткий платный период {TRIAL_OFFER_LABEL}. Тот же VLESS-ключ,
+            те же серверы и та же скорость, что на длинных тарифах.
           </p>
           <p className="text-happ-muted leading-relaxed">
-            Карту мы не запрашиваем — никаких автосписаний. Это сделано, чтобы вы проверили,
-            подходит ли Happ для ваших задач, прежде чем выбирать тариф.
+            Без автопродления: вы платите только за 3 дня и решаете, продлевать ли доступ дальше.
           </p>
         </div>
       </section>
 
       <section className="py-16 bg-zoomer-card/20">
         <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-happ-ink mb-8">Как получить подписку Happ бесплатно</h2>
+          <h2 className="text-2xl font-bold text-happ-ink mb-8">Как получить пробную подписку Happ</h2>
           <ol className="space-y-4 mb-12">
-            {['Нажмите «Получить бесплатную подписку»', 'Зарегистрируйтесь по email или Google', 'Активируйте пробный доступ в личном кабинете', 'Откройте Happ и импортируйте QR-код или ссылку'].map((s, i) => (
+            {[
+              `Нажмите «${TRIAL_OFFER_LABEL}»`,
+              'Зарегистрируйтесь по email или Google',
+              'В личном кабинете откройте раздел «Купить» и оплатите триал',
+              'Откройте Happ и импортируйте QR-код или ссылку',
+            ].map((s, i) => (
               <li key={s} className="flex gap-4">
                 <span className="w-8 h-8 rounded-full bg-zoomer-neon/20 text-zoomer-neon flex items-center justify-center font-bold shrink-0">{i + 1}</span>
                 <span className="text-happ-muted pt-1">{s}</span>
@@ -56,36 +81,29 @@ export default function HappFreePage() {
             ))}
           </ol>
 
-          <h3 className="text-xl font-bold text-happ-ink mb-4">Что входит в бесплатную подписку</h3>
+          <h3 className="text-xl font-bold text-happ-ink mb-4">Что входит в триал</h3>
           <ul className="space-y-2 text-happ-muted mb-8">
-            <li>• Полноценный доступ к VPN</li>
+            <li>• Полноценный доступ к VPN на 3 дня</li>
             <li>• Happ VPN ключ с QR-кодом и ссылкой</li>
             <li>• Серверы в нескольких странах</li>
             <li>• Настройка за 1 минуту</li>
-            <li>• Карта не нужна</li>
+            <li>• До 10 устройств (выбор в кабинете)</li>
           </ul>
 
-          <h3 className="text-xl font-bold text-happ-ink mb-4">Ограничения пробной подписки</h3>
-          <ul className="space-y-2 text-happ-muted mb-8">
-            <li>• Ограниченный срок действия</li>
-            <li>• Ограниченный выбор серверов</li>
-            <li>• 1 устройство</li>
-          </ul>
-
-          <Link to={ROUTES.LOGIN}><Button>Получить бесплатную подписку</Button></Link>
+          <Link to={ROUTES.LOGIN}><Button>{TRIAL_OFFER_LABEL}</Button></Link>
         </div>
       </section>
 
       <section className="py-16 border-t border-zoomer-border">
         <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-happ-ink mb-8 text-center">Бесплатная подписка vs Платная</h2>
+          <h2 className="text-2xl font-bold text-happ-ink mb-8 text-center">Триал vs платная подписка</h2>
           <ComparisonTable
-            columns={['Функция', 'Пробная', 'Платная']}
+            columns={['Функция', 'Триал 3 дня', 'Платная']}
             rows={[
-              ['Срок действия', 'Ограниченный', '7 дней — 2 года'],
-              ['Серверы', 'Ограниченный выбор', 'Все серверы'],
-              ['Количество устройств', '1 устройство', 'От 1 до 10 устройств'],
-              ['Карта при регистрации', 'Не нужна', 'Не нужна'],
+              ['Срок действия', '3 дня', '1 мес — 1 год'],
+              ['Серверы', 'Все серверы', 'Все серверы'],
+              ['Количество устройств', 'До 10 устройств', 'До 10 устройств'],
+              ['Стоимость', '9 ₽', 'От 189 ₽/мес'],
             ]}
           />
           <div className="text-center mt-8">
@@ -95,15 +113,15 @@ export default function HappFreePage() {
       </section>
 
       <section className="py-16 bg-zoomer-card/20 text-center px-4">
-        <h2 className="text-xl font-bold text-happ-ink mb-4">Бесплатная подписка через Telegram</h2>
-        <p className="text-happ-muted mb-6">Хапп подписка бесплатно — получите ключ прямо в боте</p>
+        <h2 className="text-xl font-bold text-happ-ink mb-4">Подписка через Telegram</h2>
+        <p className="text-happ-muted mb-6">Триал 3 дня за 9 ₽ — только на сайте. В боте — платные тарифы.</p>
         <a href={buildTelegramBotUrl()} target="_blank" rel="noopener noreferrer">
           <Button variant="secondary">Открыть Telegram бот</Button>
         </a>
       </section>
 
       <FaqSection items={FAQ} />
-      <CtaBlock title="Получить подписку Happ" buttonLabel="Получить бесплатную подписку" />
+      <CtaBlock title="Получить подписку Happ" buttonLabel={TRIAL_OFFER_LABEL} />
 
       <div className="pb-12 text-center text-sm text-happ-faint">
         <Link to={ROUTES.HAPP} className="hover:text-zoomer-neon">Получить подписку Happ</Link>

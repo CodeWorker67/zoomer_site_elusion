@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 
 function Rub({ children, color = '#5A5A6A' }) {
   return (
@@ -9,7 +9,7 @@ function Rub({ children, color = '#5A5A6A' }) {
 
 /** Цены за 1 устройство (в кабинете — до 10). */
 const ROWS = [
-  { key: 'trial', title: '1 день', badge: 'Пробный', sub: 'Полный доступ, все локации', total: null, perMonth: 'бесплатно', perHint: 'за 1 день', hot: false },
+  { key: 'trial', title: '3 дня', badge: 'Пробный', sub: 'Полный доступ, все локации', total: null, perMonth: 9, perHint: 'за 3 дня', hot: false },
   { key: '30', title: '1 месяц', sub: '189 ₽ итого', total: 189, perMonth: 189, perHint: 'в месяц', hot: false },
   { key: '90', title: '3 месяца', badge: 'Популярный', sub: '449 ₽ итого', total: 449, perMonth: 150, perHint: 'в месяц', hot: true, save: '−21%' },
   { key: '180', title: '6 месяцев', sub: '749 ₽ итого', total: 749, perMonth: 125, perHint: 'в месяц', hot: false, save: '−34%' },
@@ -22,8 +22,8 @@ export default function PricingSection() {
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 44 }}>
           <p className="kicker">Тарифы</p>
-          <h2 className="h2">Начните бесплатно</h2>
-          <p style={{ fontSize: 16, color: '#5A5A6A', marginTop: 10 }}>1 день бесплатно · 1 устройство</p>
+          <h2 className="h2">Начните с триала</h2>
+          <p style={{ fontSize: 16, color: '#5A5A6A', marginTop: 10 }}>{TRIAL_OFFER_LABEL}</p>
         </div>
         <div style={{ border: '1.5px solid rgba(0,0,0,.07)', borderRadius: 22, overflow: 'hidden', background: '#fff' }}>
           {ROWS.map((row) => (
@@ -61,13 +61,9 @@ export default function PricingSection() {
                     color: row.hot ? '#0A6CFF' : undefined,
                   }}
                 >
-                  {row.key === 'trial' ? (
-                    row.perMonth
-                  ) : (
-                    <>
-                      {row.perMonth} <Rub color={row.hot ? 'rgba(10,108,255,.6)' : '#5A5A6A'}>₽</Rub>
-                    </>
-                  )}
+                  <>
+                    {row.perMonth} <Rub color={row.hot ? 'rgba(10,108,255,.6)' : '#5A5A6A'}>₽</Rub>
+                  </>
                 </div>
                 <div style={{ fontSize: 12, color: '#9A9AAA', marginTop: 3 }}>{row.perHint}</div>
                 {row.save && (

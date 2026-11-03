@@ -39,6 +39,10 @@ export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 export const BRAND = 'Зумерский VPN';
 export const BRAND_META = 'Зумерский ВПН';
 
+/** Маркетинговое название платного триала */
+export const TRIAL_OFFER_LABEL = 'Триал 3 дня за 9 ₽';
+export const TRIAL_OFFER_SHORT = '3 дня · 9 ₽';
+
 /**
  * Тарифы для маркетинговых страниц (карточки на /happ, /incy-vpn).
  * Покупка в личном кабинете идёт через бегунки — см. @utils/pricing.
@@ -62,7 +66,7 @@ export const PAYMENT_METHODS = [
 /** Пункты меню как на kavkazvpn.ru (без переключателя языка) */
 export const NAV_LINKS = [
   { path: ROUTES.HAPP, label: 'Подписка' },
-  { path: ROUTES.HAPP_FREE, label: 'Бесплатно' },
+  { path: ROUTES.HAPP_FREE, label: TRIAL_OFFER_LABEL },
   { path: ROUTES.HAPP_DOWNLOAD, label: 'Скачать Happ' },
 ];
 

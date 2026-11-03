@@ -5,7 +5,7 @@ export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://zoomersky.win
 export const DEFAULT_TITLE = 'Зумерский VPN — защищённая передача данных | VLESS Reality';
 
 export const DEFAULT_DESCRIPTION =
-  'Зумерский ВПН: защищённая передача данных, приватная маршрутизация, VLESS Reality, стабильное соединение. Попробуй бесплатно!';
+  'Зумерский ВПН: защищённая передача данных, приватная маршрутизация, VLESS Reality, стабильное соединение. Триал 3 дня за 9 ₽.';
 
 export function canonicalFor(path) {
   const p = path.startsWith('/') ? path : `/${path}`;

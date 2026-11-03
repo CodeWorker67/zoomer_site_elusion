@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Gift, Volume2, VolumeX } from 'lucide-react';
 import Button from '@components/ui/Button';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 
 const INITIAL_VOLUME = 0.5;
 
@@ -243,7 +243,7 @@ export default function HomeRaffleSection() {
             </Link>
             <Link to={ROUTES.LOGIN} className="block w-full">
               <Button variant="secondary" className="w-full text-center">
-                Попробовать бесплатно
+                {TRIAL_OFFER_LABEL}
               </Button>
             </Link>
           </div>

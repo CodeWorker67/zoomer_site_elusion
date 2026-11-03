@@ -4,16 +4,16 @@ import PageHero from '@components/sections/PageHero';
 import FaqSection from '@components/sections/FaqSection';
 import CtaBlock from '@components/sections/CtaBlock';
 import Button from '@components/ui/Button';
-import { BRAND, BRAND_META, ROUTES } from '@utils/constants';
+import { BRAND, BRAND_META, ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 
 const FAQ = [
   { q: 'Что такое VPN для Happ?', a: 'Happ — клиент VPN, в который импортируется готовый VLESS ключ. Ключ выдаёт Зумерский VPN после регистрации.' },
   { q: 'Какой VPN-протокол использует Happ?', a: 'Happ работает по протоколу VLESS с Reality — высокая скорость и устойчивость в мобильных сетях.' },
   { q: 'Можно ли подключить VPN в Happ без настройки?', a: 'Да. После регистрации ключ появляется в личном кабинете. QR-код или ссылка — подключение за минуту.' },
   { q: 'VPN для Happ работает на iPhone и Android?', a: 'Да. Один VLESS ключ работает на iOS и Android.' },
-  { q: 'Сколько стоит VPN для Happ?', a: 'Пробный день без карты. Дальше от 189 ₽/мес за 1 устройство, до 10 в кабинете.' },
+  { q: 'Сколько стоит VPN для Happ?', a: 'Триал 3 дня за 9 ₽. Дальше от 189 ₽/мес за 1 устройство, до 10 в кабинете.' },
   { q: 'Как оформить подписку на VPN в Happ?', a: 'Зарегистрируйтесь на Зумерский VPN, выберите тариф и оплатите через СБП. Ключ появится в личном кабинете сразу.' },
-  { q: 'Сколько стоит подписка Happ VPN?', a: 'От 189 ₽ за 1 месяц (1 устройство): 3 мес — 449 ₽, 6 мес — 749 ₽, год — 1 299 ₽. Пробный день — бесплатно.' },
+  { q: 'Сколько стоит подписка Happ VPN?', a: 'Триал 3 дня за 9 ₽. От 189 ₽/мес (1 устройство): 3 мес — 449 ₽, 6 мес — 749 ₽, год — 1 299 ₽.' },
 ];
 
 export default function HappVpnPage() {
@@ -22,9 +22,9 @@ export default function HappVpnPage() {
       <RouteMeta path={ROUTES.HAPP_VPN} />
       <PageHero
         title="VPN для Happ"
-        subtitle="Готовый VLESS ключ для подключения в Happ. Импорт по QR-коду или ссылке за минуту — без привязки карты."
+        subtitle={`Готовый VLESS ключ для подключения в Happ. Импорт по QR-коду или ссылке за минуту. ${TRIAL_OFFER_LABEL}.`}
         primaryLabel="Получить ключ для Happ"
-        secondaryLabel="Попробовать бесплатно"
+        secondaryLabel={TRIAL_OFFER_LABEL}
         secondaryTo={ROUTES.HAPP_FREE}
       />
 
@@ -63,8 +63,8 @@ export default function HappVpnPage() {
           <h2 className="text-2xl font-bold text-happ-ink mb-8 text-center">Как подключить VPN в Happ за 1 минуту</h2>
           <ol className="space-y-4">
             {[
-              { t: 'Зарегистрируйтесь на Зумерский VPN', d: 'Email или Google — карта не нужна' },
-              { t: 'Активируйте пробный доступ', d: 'Без оплаты' },
+              { t: 'Зарегистрируйтесь на Зумерский VPN', d: 'Email или Google' },
+              { t: 'Оформите триал в разделе «Купить»', d: TRIAL_OFFER_LABEL },
               { t: 'Откройте Happ', d: 'На iPhone или Android' },
               { t: 'Импортируйте ключ', d: 'QR-код из кабинета или ссылка' },
               { t: 'Подключайтесь', d: 'Включите VPN — соединение готово' },
@@ -116,13 +116,13 @@ export default function HappVpnPage() {
       </section>
 
       <section className="py-16 bg-zoomer-card/20 text-center px-4">
-        <h2 className="text-xl font-bold text-happ-ink mb-4">Бесплатный пробный доступ</h2>
-        <p className="text-happ-muted mb-6 max-w-xl mx-auto">Активируйте пробный доступ в личном кабинете — карта не нужна.</p>
-        <Link to={ROUTES.HAPP_FREE}><Button variant="secondary">Попробовать бесплатно</Button></Link>
+        <h2 className="text-xl font-bold text-happ-ink mb-4">Пробный доступ</h2>
+        <p className="text-happ-muted mb-6 max-w-xl mx-auto">{TRIAL_OFFER_LABEL} — в разделе «Купить» личного кабинета.</p>
+        <Link to={ROUTES.HAPP_FREE}><Button variant="secondary">{TRIAL_OFFER_LABEL}</Button></Link>
       </section>
 
       <FaqSection items={FAQ} />
-      <CtaBlock title="Получите ключ для Happ" subtitle="Пробный доступ без карты. Импорт по QR-коду или ссылке." buttonLabel="Получить ключ для Happ" />
+      <CtaBlock title="Получите ключ для Happ" subtitle={TRIAL_OFFER_LABEL} buttonLabel="Получить ключ для Happ" />
 
       <div className="pb-12 text-center text-sm text-happ-faint flex flex-wrap justify-center gap-4">
         <Link to={ROUTES.HAPP} className="hover:text-zoomer-neon">Подписка Happ</Link>

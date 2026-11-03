@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ROUTES, SUPPORT_URL } from '@utils/constants';
+import { ROUTES, SUPPORT_URL, TRIAL_OFFER_LABEL } from '@utils/constants';
 
 export default function CtaSection() {
   return (
@@ -29,7 +29,7 @@ export default function CtaSection() {
             marginBottom: 14,
           }}
         >
-          Один день бесплатно.
+          {TRIAL_OFFER_LABEL}
           <br />
           Прямо сейчас.
         </h2>
@@ -38,7 +38,7 @@ export default function CtaSection() {
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link className="cta-white" to={ROUTES.LOGIN}>
-            Попробовать бесплатно
+            {TRIAL_OFFER_LABEL}
           </Link>
           <a className="cta-ghost" href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">
             Написать в поддержку

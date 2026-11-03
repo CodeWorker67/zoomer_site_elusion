@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 import HeroIllustration from './HeroIllustration';
 
 export default function HeroSection() {
@@ -104,7 +104,7 @@ export default function HeroSection() {
             </Link>
           </div>
           <p style={{ marginTop: 22, fontSize: 14, color: '#8A8A99' }}>
-            1 день бесплатно · аккаунт создаётся автоматически ·{' '}
+            {TRIAL_OFFER_LABEL} · аккаунт создаётся автоматически ·{' '}
             <Link to={ROUTES.LOGIN} style={{ fontWeight: 700, color: '#0A6CFF' }}>
               уже есть аккаунт?
             </Link>

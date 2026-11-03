@@ -135,7 +135,7 @@ function OverviewTab({ onGoTab }) {
     || sub?.pro?.plan_name
     || (isActive && !hasPaid ? 'Пробный' : 'Подписка');
   const inPanel = Boolean(sub?.in_panel);
-  /** Бесплатный день доступен только до первой активации ключа в панели. */
+  /** Триал доступен до первой активации ключа в панели. */
   const showTrialCta = !inPanel && !isActive && !hasPaid;
   const devicesNum = isActive ? Number(sub?.devices) : 0;
   const devicesText = devicesNum >= 1 ? devicesLabel(devicesNum) : '—';

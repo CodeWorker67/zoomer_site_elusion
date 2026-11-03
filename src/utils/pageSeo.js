@@ -5,7 +5,7 @@ export const PAGE_SEO = {
   [ROUTES.HOME]: {
     title: 'Зумерский VPN — защищённая передача данных | VLESS Reality',
     description:
-      'Зумерский ВПН: защищённая передача данных, VLESS Reality, стабильное соединение. До 10 Гбит/с, 4 страны. 5 дней бесплатно.',
+      'Зумерский ВПН: защищённая передача данных, VLESS Reality, стабильное соединение. До 10 Гбит/с, 4 страны. Триал 3 дня за 9 ₽.',
   },
   [ROUTES.HAPP]: {
     title: 'Тарифы — Зумерский VPN',
@@ -15,7 +15,7 @@ export const PAGE_SEO = {
   [ROUTES.HAPP_FREE]: {
     title: 'Пробный доступ — Зумерский VPN',
     description:
-      'Зумерский ВПН: пробный доступ без карты, VLESS ключ для Happ. Защищённая передача данных, стабильное соединение.',
+      'Зумерский ВПН: триал 3 дня за 9 ₽, VLESS ключ для Happ. Защищённая передача данных, стабильное соединение.',
   },
   [ROUTES.HAPP_TELEGRAM]: {
     title: 'Happ VPN в Telegram | Зумерский VPN',
@@ -76,7 +76,7 @@ export const PAGE_SEO = {
     noindex: true,
   },
   [ROUTES.TRIAL]: {
-    title: 'Пробный период — Зумерский VPN',
+    title: 'Триал 3 дня за 9 ₽ — Зумерский VPN',
     noindex: true,
   },
   [ROUTES.SUCCESS]: {

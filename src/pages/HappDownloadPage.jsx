@@ -5,7 +5,7 @@ import PageHero from '@components/sections/PageHero';
 import FaqSection from '@components/sections/FaqSection';
 import CtaBlock from '@components/sections/CtaBlock';
 import Button from '@components/ui/Button';
-import { BRAND, BRAND_META, DOWNLOAD_LINKS, ROUTES } from '@utils/constants';
+import { BRAND, BRAND_META, DOWNLOAD_LINKS, ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 import { buildTelegramBotUrl } from '@utils/botLink';
 
 const FAQ = [
@@ -13,7 +13,7 @@ const FAQ = [
   { q: 'Можно ли скачать Happ VPN на Зумерский VPN?', a: 'Нет. Зумерский VPN не является разработчиком Happ. Мы даём доступ к подписке из личного кабинета.' },
   { q: 'Что делать после установки Happ?', a: 'Зарегистрируйтесь по email или Google, откройте личный кабинет и импортируйте ключ в Happ.' },
   { q: 'Можно ли войти по email?', a: 'Да. Вход по email (код на почту) или Google. Также доступен Telegram-бот.' },
-  { q: 'Сколько стоит подключение?', a: 'Пробный день — бесплатно, 1 устройство. Платные тарифы от 189 ₽/мес за 1 устройство.' },
+  { q: 'Сколько стоит подключение?', a: 'Триал 3 дня за 9 ₽. Платные тарифы от 189 ₽/мес за 1 устройство.' },
   { q: 'Нужно ли что-то настраивать вручную?', a: 'Нет. Скопируйте ссылку или QR-код из личного кабинета — все параметры уже внутри.' },
 ];
 
@@ -23,9 +23,9 @@ export default function HappDownloadPage() {
       <RouteMeta path={ROUTES.HAPP_DOWNLOAD} />
       <PageHero
         title="Скачать Happ VPN и подключить подписку"
-        subtitle="Официальные ссылки на Happ для iPhone, Android, macOS и Windows. После установки зарегистрируйтесь по email или Google — ключ в личном кабинете. Пробный доступ без карты."
+        subtitle={`Официальные ссылки на Happ для iPhone, Android, macOS и Windows. После установки зарегистрируйтесь — ключ в личном кабинете. ${TRIAL_OFFER_LABEL}.`}
         primaryLabel="Начать"
-        secondaryLabel="Попробовать бесплатно"
+        secondaryLabel={TRIAL_OFFER_LABEL}
         secondaryTo={ROUTES.HAPP_FREE}
       />
 
@@ -72,7 +72,7 @@ export default function HappDownloadPage() {
           <h2 className="text-2xl font-bold text-happ-ink mb-8">Как подключить подписку в Happ</h2>
           <ol className="space-y-4">
             {[
-              'Зарегистрируйтесь на Зумерский VPN по email или Google — пробный доступ активируется',
+              `Зарегистрируйтесь на Зумерский VPN — оформите ${TRIAL_OFFER_LABEL} в разделе «Купить»`,
               'Откройте личный кабинет — там уже есть ваша подписка',
               'Скопируйте ссылку или QR-код для импорта',
               'Импортируйте в Happ',
@@ -100,8 +100,8 @@ export default function HappDownloadPage() {
 
       <section className="py-16 border-t border-zoomer-border text-center px-4">
         <h2 className="text-xl font-bold text-happ-ink mb-4">Пробный доступ</h2>
-        <p className="text-happ-muted mb-6 max-w-xl mx-auto">Бесплатный доступ без карты. Проверьте скорость Happ перед оплатой.</p>
-        <Link to={ROUTES.HAPP_FREE}><Button variant="secondary">Попробовать бесплатно</Button></Link>
+        <p className="text-happ-muted mb-6 max-w-xl mx-auto">{TRIAL_OFFER_LABEL}. Проверьте скорость Happ перед длинным тарифом.</p>
+        <Link to={ROUTES.HAPP_FREE}><Button variant="secondary">{TRIAL_OFFER_LABEL}</Button></Link>
       </section>
 
       <FaqSection items={FAQ} />

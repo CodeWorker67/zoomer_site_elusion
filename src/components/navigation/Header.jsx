@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { BRAND, NAV_LINKS, ROUTES } from '@utils/constants';
+import { BRAND, NAV_LINKS, ROUTES, TRIAL_OFFER_LABEL, TRIAL_OFFER_SHORT } from '@utils/constants';
 import useAuthStore from '@stores/authStore';
 
 const HOME_ANCHORS = [
@@ -57,8 +57,8 @@ export default function Header() {
         )}
         {!hideTrialCta && (
           <Link className="nav-cta" to={authTo}>
-            <span className="nav-cta__full">Попробовать бесплатно</span>
-            <span className="nav-cta__short">Бесплатно</span>
+            <span className="nav-cta__full">{TRIAL_OFFER_LABEL}</span>
+            <span className="nav-cta__short">{TRIAL_OFFER_SHORT}</span>
           </Link>
         )}
       </div>

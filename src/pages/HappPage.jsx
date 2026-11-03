@@ -5,16 +5,16 @@ import PricingCards from '@components/sections/PricingCards';
 import FaqSection from '@components/sections/FaqSection';
 import CtaBlock from '@components/sections/CtaBlock';
 import Button from '@components/ui/Button';
-import { BRAND, BRAND_META, HOME_TARIFFS, ROUTES } from '@utils/constants';
+import { BRAND, BRAND_META, HOME_TARIFFS, ROUTES, TRIAL_OFFER_LABEL } from '@utils/constants';
 
 const FAQ = [
   { q: 'Что такое подписка Happ?', a: 'Подписка Happ — оплаченный период доступа к VPN с готовым VLESS-ключом для импорта в Happ по QR-коду или ссылке.' },
   { q: 'Как купить подписку Happ?', a: 'Зарегистрируйтесь на Зумерский VPN по email или Google, выберите тариф и оплатите через СБП — ключ появится в личном кабинете сразу.' },
-  { q: 'Сколько стоит подписка Happ?', a: 'От 189 ₽ за 1 месяц (1 устройство): 3 мес — 449 ₽, 6 мес — 749 ₽, год — 1 299 ₽. В кабинете можно выбрать до 10 устройств. Пробный день — бесплатно.' },
+  { q: 'Сколько стоит подписка Happ?', a: 'Триал — 3 дня за 9 ₽. Дальше от 189 ₽/мес (1 устройство): 3 мес — 449 ₽, 6 мес — 749 ₽, год — 1 299 ₽. До 10 устройств в кабинете.' },
   { q: 'Чем подписка отличается от разового ключа?', a: 'Ключ — формат подключения (vless://), подписка — оплаченный период. Продление возвращает доступ без замены ключа.' },
   { q: 'Как продлить подписку Happ?', a: 'В личном кабинете выберите тариф и оплатите новый период. Ключ остаётся прежним.' },
   { q: 'Где купить хапп ключ?', a: 'На Зумерский VPN — зарегистрируйтесь и оформите подписку, либо перейдите в Telegram-бот.' },
-  { q: 'Как получить бесплатный ключ для хапп?', a: 'Активируйте пробный доступ — карта не нужна. Подробнее на странице бесплатной подписки.' },
+  { q: 'Как получить пробный ключ для хапп?', a: 'Зарегистрируйтесь и оформите триал 3 дня за 9 ₽ в разделе «Купить» личного кабинета.' },
   { q: 'Нужно что-то настраивать в Happ вручную?', a: 'Нет. Сканируете QR-код или вставляете ссылку — подключение готово.' },
 ];
 
@@ -24,9 +24,9 @@ export default function HappPage() {
       <RouteMeta path={ROUTES.HAPP} />
       <PageHero
         title="Подписка Happ — ключи для Happ VPN"
-        subtitle="Оформите подписку Happ с моментальной активацией. Готовый ключ для приложения Happ по QR-коду или ссылке — настройка меньше минуты. От 189 ₽/мес за 1 устройство, пробный день бесплатно."
+        subtitle={`Оформите подписку Happ с моментальной активацией. Готовый ключ для приложения Happ по QR-коду или ссылке — настройка меньше минуты. ${TRIAL_OFFER_LABEL}.`}
         primaryLabel="Получить подписку"
-        secondaryLabel="Попробовать бесплатно"
+        secondaryLabel={TRIAL_OFFER_LABEL}
         secondaryTo={ROUTES.HAPP_FREE}
       />
 
@@ -57,9 +57,9 @@ export default function HappPage() {
 
       <section className="py-16 border-t border-zoomer-border">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-happ-ink mb-4">Пробная подписка Happ бесплатно</h2>
-          <p className="text-happ-muted mb-6">Хотите попробовать перед оплатой? Активируйте пробную подписку — карта не нужна.</p>
-          <Link to={ROUTES.HAPP_FREE}><Button variant="secondary">Получить бесплатно →</Button></Link>
+          <h2 className="text-2xl font-bold text-happ-ink mb-4">Пробная подписка Happ</h2>
+          <p className="text-happ-muted mb-6">Хотите попробовать перед длинным тарифом? {TRIAL_OFFER_LABEL} — оплата через СБП или карту РФ.</p>
+          <Link to={ROUTES.HAPP_FREE}><Button variant="secondary">{TRIAL_OFFER_LABEL} →</Button></Link>
         </div>
       </section>
 
@@ -83,7 +83,7 @@ export default function HappPage() {
           <h2 className="text-2xl font-bold text-happ-ink mb-6">Тарифы подписки Happ</h2>
           <div className="space-y-4 text-happ-muted">
             <p><strong className="text-happ-ink font-semibold">1 / 3 / 6 месяцев и 1 год</strong> — от 189 ₽ за месяц при 1 устройстве. Число устройств (до 10) выбирается в личном кабинете.</p>
-            <p><strong className="text-happ-ink font-semibold">Пробный день</strong> — бесплатно, 1 устройство, без карты.</p>
+            <p><strong className="text-happ-ink font-semibold">Триал 3 дня</strong> — 9 ₽, до 10 устройств в кабинете.</p>
             <p className="text-happ-faint text-sm">Все тарифы — без автосписаний. Продление только вручную.</p>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function HappPage() {
       </section>
 
       <FaqSection items={FAQ} />
-      <CtaBlock title="Купить подписку Happ за 1 минуту" subtitle="От 189 ₽/мес, пробный день бесплатно." buttonLabel="Получить подписку" />
+      <CtaBlock title="Купить подписку Happ за 1 минуту" subtitle={TRIAL_OFFER_LABEL} buttonLabel="Получить подписку" />
 
       <div className="pb-12 text-center text-sm text-happ-faint flex flex-wrap justify-center gap-4">
         <Link to={ROUTES.HAPP_FREE} className="hover:text-zoomer-neon">Пробная подписка Happ</Link>
