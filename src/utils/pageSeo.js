@@ -75,6 +75,10 @@ export const PAGE_SEO = {
     title: 'Оплата — Зумерский VPN',
     noindex: true,
   },
+  [ROUTES.TRIAL]: {
+    title: 'Пробный период — Зумерский VPN',
+    noindex: true,
+  },
   [ROUTES.SUCCESS]: {
     title: 'Оплата успешна — Зумерский VPN',
     noindex: true,

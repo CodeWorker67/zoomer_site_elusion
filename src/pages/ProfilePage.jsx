@@ -19,7 +19,8 @@ import {
   MonitorSmartphone,
 } from 'lucide-react';
 import useAuthStore from '@stores/authStore';
-import { authApi, userApi, trialApi } from '@services/api';
+import { authApi, userApi } from '@services/api';
+import TrialCtaButton from '@components/subscription/TrialCtaButton';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
 import DashboardLayout from '@components/dashboard/DashboardLayout';
@@ -104,8 +105,6 @@ function OverviewTab({ onGoTab }) {
   const [sub, setSub] = useState(null);
   const [raffleTickets, setRaffleTickets] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [trialActivating, setTrialActivating] = useState(false);
-
   const loadOverview = useCallback(async () => {
     try {
       const [subRes, meRes] = await Promise.all([
@@ -126,22 +125,6 @@ function OverviewTab({ onGoTab }) {
   useEffect(() => {
     loadOverview();
   }, [loadOverview]);
-
-  const handleActivateTrial = async () => {
-    setTrialActivating(true);
-    try {
-      const { data } = await trialApi.activate();
-      if (data?.success) {
-        toast.success('Пробный доступ активирован!');
-        await loadOverview();
-      }
-    } catch (err) {
-      const msg = err.response?.data?.error || err.response?.data?.detail || 'Не удалось активировать пробный доступ';
-      toast.error(msg);
-    } finally {
-      setTrialActivating(false);
-    }
-  };
 
   const isActive = sub?.active || sub?.pro?.active;
   const expires = sub?.expires || sub?.pro?.expires;
@@ -217,17 +200,9 @@ function OverviewTab({ onGoTab }) {
           <span className="text-happ-ink font-medium">{devicesText}</span>
         </p>
         {showTrialCta && (
-          <button
-            type="button"
-            onClick={handleActivateTrial}
-            disabled={trialActivating}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold bg-happ-blue text-white hover:bg-happ-blue-hover transition-colors disabled:opacity-60 mb-4"
-          >
-            {trialActivating ? (
-              <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden />
-            ) : null}
-            Попробовать бесплатно
-          </button>
+          <div className="mb-4">
+            <TrialCtaButton />
+          </div>
         )}
         {isActive && (
           <div className="mb-5">
@@ -297,6 +272,7 @@ function SubscriptionTab() {
   const [keys, setKeys] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [autopayBusy, setAutopayBusy] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -309,6 +285,22 @@ function SubscriptionTab() {
   const subUrl = keys?.subscription_url || keys?.pro_url;
   const expires = sub?.expires || sub?.pro?.expires;
   const devicesCount = isActive ? Number(sub?.devices) || 0 : 0;
+  const autopayOn = sub?.autopay_enabled === true || sub?.autopay_active === true;
+
+  const disableAutopay = async () => {
+    setAutopayBusy(true);
+    try {
+      await userApi.disableAutopay();
+      toast.success('Автоплатежи отключены');
+      const { data } = await userApi.subscription();
+      setSub(data);
+    } catch (err) {
+      const detail = err.response?.data?.detail;
+      toast.error(typeof detail === 'string' ? detail : 'Не удалось отключить автоплатежи');
+    } finally {
+      setAutopayBusy(false);
+    }
+  };
 
   const copyUrl = () => {
     if (!subUrl) return;
@@ -335,11 +327,27 @@ function SubscriptionTab() {
             <span className="text-happ-muted">Срок действия</span>
             <span className="text-happ-ink text-right">{expires || '—'}</span>
           </div>
-          <div className="flex justify-between gap-4 py-2">
+          <div className="flex justify-between gap-4 py-2 border-b border-zoomer-border">
             <span className="text-happ-muted">Устройств</span>
             <span className="text-happ-ink">{devicesCount ? devicesLabel(devicesCount) : '—'}</span>
           </div>
+          <div className="flex justify-between gap-4 py-2 items-center">
+            <span className="text-happ-muted">Автоплатежи</span>
+            <span className={`font-medium ${autopayOn ? 'text-zoomer-neon' : 'text-happ-faint'}`}>
+              {autopayOn ? 'включены' : 'отключены'}
+            </span>
+          </div>
         </div>
+        {autopayOn && (
+          <button
+            type="button"
+            onClick={disableAutopay}
+            disabled={autopayBusy}
+            className="mt-3 w-full py-2.5 px-4 rounded-xl border-2 border-red-400/40 text-red-400 text-sm font-semibold hover:bg-red-400/10 transition-colors disabled:opacity-60"
+          >
+            {autopayBusy ? 'Отключаем…' : 'Отключить автоплатеж'}
+          </button>
+        )}
         <Link
           to={ROUTES.ADD_DEVICE}
           className="mt-4 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border-2 border-happ-blue/45 bg-happ-blue/[0.07] text-happ-blue text-sm font-semibold hover:bg-happ-blue/10 hover:border-happ-blue/70 transition-colors"

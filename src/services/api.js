@@ -50,6 +50,7 @@ export const authApi = {
 
 export const configApi = {
   tariffs: () => api.get('/config/tariffs'),
+  trial: () => api.get('/config/trial'),
 };
 
 export const paymentApi = {
@@ -57,6 +58,8 @@ export const paymentApi = {
   createPayment: (data) => api.post('/payments/create', data),
   /** { add_count: 1..N, method: 'sbp'|'card' } */
   createAddDevicesPayment: (data) => api.post('/payments/create-add-devices', data),
+  /** { devices: 1..10, method: 'sbp'|'card' } — ЮKassa */
+  createTrialPayment: (data) => api.post('/payments/create-trial', data),
   getStatus: (id) => api.get(`/payments/${id}/status`),
 };
 
@@ -68,6 +71,7 @@ export const userApi = {
   setPassword: (data) => api.post('/user/set-password', data),
   changePassword: (data) => api.post('/user/change-password', data),
   removePassword: (data) => api.post('/user/remove-password', data),
+  disableAutopay: () => api.post('/user/autopay/disable'),
 };
 
 export const trialApi = {

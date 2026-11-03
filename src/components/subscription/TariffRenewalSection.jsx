@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CreditCard, Loader2, MonitorSmartphone } from 'lucide-react';
 import Button from '@components/ui/Button';
 import RangeSlider from '@components/ui/RangeSlider';
+import TrialCtaButton from '@components/subscription/TrialCtaButton';
 import { ROUTES, PAYMENT_METHODS } from '@utils/constants';
 import { configApi, userApi } from '@services/api';
 import {
@@ -71,6 +72,7 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
   const price = priceFor(prices, effectiveDevices, period.id);
   const isFirstPurchase = profile?.has_paid_subscription !== true;
   const primaryActionLabel = isFirstPurchase ? 'Купить' : 'Продлить';
+  const showTrialCta = profile?.trial_available === true && !profile?.in_panel;
 
   const goCheckout = (tariffId) => {
     const params = new URLSearchParams({
@@ -83,6 +85,11 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
 
   return (
     <div className="space-y-4">
+      {showTrialCta && loaded && (
+        <div className="card-dark">
+          <TrialCtaButton className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-sm font-semibold bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon text-zoomer-dark hover:opacity-95 transition-opacity" />
+        </div>
+      )}
       {showHeader && (
         <div className="card-dark">
           <h2 className="text-lg font-bold text-happ-ink mb-2">Тарифы</h2>

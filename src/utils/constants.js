@@ -14,6 +14,7 @@ export const ROUTES = {
   EARNINGS: '/dashboard/earnings',
   ADD_DEVICE: '/dashboard/add-device',
   CHECKOUT: '/checkout',
+  TRIAL: '/trial',
   SUCCESS: '/success',
   PRIVACY: '/privacy',
   TERMS: '/terms',

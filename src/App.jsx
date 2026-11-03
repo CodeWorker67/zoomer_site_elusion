@@ -26,6 +26,7 @@ const EarningsPage = lazy(() => import('@pages/EarningsPage'));
 const AddDevicePage = lazy(() => import('@pages/AddDevicePage'));
 const OnboardingPage = lazy(() => import('@pages/OnboardingPage'));
 const CheckoutPage = lazy(() => import('@pages/CheckoutPage'));
+const TrialPage = lazy(() => import('@pages/TrialPage'));
 const SuccessPage = lazy(() => import('@pages/SuccessPage'));
 const PrivacyPage = lazy(() => import('@pages/PrivacyPage'));
 const TermsPage = lazy(() => import('@pages/TermsPage'));
@@ -83,6 +84,7 @@ function AppShell() {
             <Route path={ROUTES.PRIVACY} element={<PrivacyPage />} />
             <Route path={ROUTES.TERMS} element={<TermsPage />} />
             <Route path={ROUTES.CHECKOUT} element={<CheckoutPage />} />
+            <Route path={ROUTES.TRIAL} element={<ProtectedRoute><TrialPage /></ProtectedRoute>} />
             <Route path={ROUTES.SUCCESS} element={<SuccessPage />} />
             <Route path={ROUTES.PROFILE} element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path={ROUTES.DASHBOARD} element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
