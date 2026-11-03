@@ -5,7 +5,6 @@ import Button from '@components/ui/Button';
 import RangeSlider from '@components/ui/RangeSlider';
 import { ROUTES, PAYMENT_METHODS } from '@utils/constants';
 import { configApi, userApi } from '@services/api';
-import { tariffLabelWithTickets } from '@utils/raffle';
 import {
   DEVICES_MAX,
   DEVICES_MIN,
@@ -130,7 +129,7 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
         <div className="card-dark space-y-7">
           <RangeSlider
             title="Длительность подписки"
-            valueLabel={tariffLabelWithTickets(period.label, period.days)}
+            valueLabel={period.label}
             options={PERIOD_OPTIONS}
             value={periodId}
             onChange={setPeriodId}
@@ -186,7 +185,7 @@ export default function TariffRenewalSection({ showHeader = true, showPaymentMet
                 <div key={p.id} className="card-dark flex items-center justify-between gap-4">
                   <div>
                     <div className="text-happ-ink font-semibold">
-                      {tariffLabelWithTickets(p.label, p.days)}
+                      {p.label}
                     </div>
                     <div className="text-happ-faint text-xs mt-0.5">
                       {`Продление на ${p.label.toLowerCase()}`}

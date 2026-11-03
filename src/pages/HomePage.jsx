@@ -1,5 +1,5 @@
 import { RouteMeta } from '@components/seo/PageMeta';
-import HomeRaffleSection from '@components/sections/HomeRaffleSection';
+// import HomeRaffleSection from '@components/sections/HomeRaffleSection';
 import HeroSection from '@components/sections/HeroSection';
 import Ticker from '@components/sections/Ticker';
 import FeaturesSection from '@components/sections/FeaturesSection';
@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div style={{ width: '100%', fontFamily: 'Manrope,-apple-system,sans-serif', color: '#0F0F0F' }}>
       <RouteMeta path={ROUTES.HOME} />
-      <HomeRaffleSection />
+      {/* <HomeRaffleSection /> */}
       <HeroSection />
       <Ticker />
       <FeaturesSection />
